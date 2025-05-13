@@ -2,6 +2,7 @@ package org.example.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
 public class Produto implements Serializable {
@@ -37,11 +38,24 @@ public class Produto implements Serializable {
 
     @Column(name = "PRO_FABRICANTE")
     private String proFabricante;
+    @Column(name = "PRO_DESCRICAO")
+    private String proDescricao;
+    @Column(name = "PRO_CATEGORIA")
+    private String proCategoria;
+    @Column(name = "PRO_CODIGO_BARRAS")
+    private String proCodigoBarras;
+    @Column(name = "PRO_DATA_CADASTRO")
+    private LocalDateTime proDataCadastro;
+    @Column(name = "PRO_DATA_ATUALIZACAO")
+    private LocalDateTime proDataAtualizacao;
+
+    @Column(name = "PRO_ATIVO")
+    private String proAtivo;
 
     public Produto() {
     }
 
-    public Produto(Long proId, String proNome, Double proPrecoCusto, Double proPrecoVenda, String proMarca, String proModelo, int proEstoque, String proCor, String proMaterial, String proFabricante) {
+    public Produto(Long proId, String proNome, Double proPrecoCusto, Double proPrecoVenda, String proMarca, String proModelo, int proEstoque, String proCor, String proMaterial, String proFabricante, String proDescricao, String proCategoria, String procodigoBarras, LocalDateTime proDataCadastro, LocalDateTime proDataAtualizacao, String proAtivo) {
         this.proId = proId;
         this.proNome = proNome;
         this.proPrecoCusto = proPrecoCusto;
@@ -52,6 +66,12 @@ public class Produto implements Serializable {
         this.proCor = proCor;
         this.proMaterial = proMaterial;
         this.proFabricante = proFabricante;
+        this.proDescricao = proDescricao;
+        this.proCategoria = proCategoria;
+        this.proCodigoBarras = procodigoBarras;
+        this.proDataCadastro = proDataCadastro;
+        this.proDataAtualizacao = proDataAtualizacao;
+        this.proAtivo = proAtivo;
     }
 
     public Long getProId() {
@@ -132,5 +152,53 @@ public class Produto implements Serializable {
 
     public void setProFabricante(String proFabricante) {
         this.proFabricante = proFabricante;
+    }
+
+    public String getProDescricao() {
+        return proDescricao;
+    }
+
+    public void setProDescricao(String proDescricao) {
+        this.proDescricao = proDescricao;
+    }
+
+    public String getProCategoria() {
+        return proCategoria;
+    }
+
+    public void setProCategoria(String proCategoria) {
+        this.proCategoria = proCategoria;
+    }
+
+    public String getProCodigoBarras() {
+        return proCodigoBarras;
+    }
+
+    public void setProCodigoBarras(String proCodigoBarras) {
+        this.proCodigoBarras = proCodigoBarras;
+    }
+
+    public LocalDateTime getProDataCadastro() {
+        return proDataCadastro;
+    }
+
+    public void setProDataCadastro(LocalDateTime proDataCadastro) {
+        this.proDataCadastro = proDataCadastro;
+    }
+
+    public LocalDateTime getProDataAtualizacao() {
+        return proDataAtualizacao;
+    }
+
+    public void setProDataAtualizacao(LocalDateTime proDataAtualizacao) {
+        this.proDataAtualizacao = proDataAtualizacao;
+    }
+
+    public String getProAtivo() {
+        return proAtivo;
+    }
+
+    public void setProAtivo(String proAtivo) {
+        this.proAtivo = proAtivo;
     }
 }
