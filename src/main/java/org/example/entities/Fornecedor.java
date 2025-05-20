@@ -1,6 +1,10 @@
 package org.example.entities;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,16 +17,24 @@ public class Fornecedor implements Serializable {
     @Column(name = "FOR_ID")
     private Long forId;
 
-    @Column(name = "FOR_NOME_FANTASIA")
+    @NotBlank(message = "Nome Fantasia é Obrigatório")
+    @Size(max = 100, message = "Nome Fantasia deve ter no máximo 100 Caracteres")
+    @Column(name = "FOR_NOME_FANTASIA", nullable = false, length = 100)
     private String forNomeFantasia;
 
-    @Column(name = "FOR_CNPJ", unique = true, length = 14)
+    @NotBlank(message = "CNPJ é Obrigatório")
+    @CNPJ(message = "CNPJ Inválido")
+    @Column(name = "FOR_CNPJ",nullable = false, unique = true, length = 18)
     private String forCnpj;
 
-    @Column(name = "FOR_RAZAO_SOCIAL")
+    @NotBlank(message = "Razão Social é Obrigatório")
+    @Size(max = 100, message = "Razão Social deve ter no máximo 100 Caracteres")
+    @Column(name = "FOR_RAZAO_SOCIAL", nullable = false, unique = true, length = 100)
     private String forRazaoSocial;
 
-    @Column(length = 30, name = "FOR_STATUS", nullable = false)
+    @NotBlank(message = "Status é Obrigatório")
+    @Size(max = 60, message = "Status deve ter no máximo 60 Caracteres")
+    @Column(name = "FOR_STATUS", nullable = false, length = 60)
     private String forStatus;
 
     public Fornecedor() {

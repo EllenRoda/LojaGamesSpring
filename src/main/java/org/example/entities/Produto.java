@@ -1,6 +1,7 @@
 package org.example.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -12,45 +13,68 @@ public class Produto implements Serializable {
     @Column(name = "PRO_ID")
     private Long proId;
 
-    @Column(name = "PRO_NOME")
+    @NotBlank(message = "Nome é obrigatório")
+    @Size(max = 100, message = "Nome deve ter no máximo 100 caracteres")
+    @Column(name = "PRO_NOME", nullable = false, length = 100)
     private String proNome;
 
-    @Column(name = "PRO_PRECO_CUSTO", precision = 10, scale = 2)
+    @NotNull(message = "Preço de Custo é obrigatório")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Preço de Custo deve ser maior que zero")
+    @Column(name = "PRO_PRECO_CUSTO", precision = 10, scale = 2, nullable = false)
     private Double proPrecoCusto;
 
-    @Column(name = "PRO_PRECO_VENDA", precision = 10, scale = 2)
+    @NotNull(message = "Preço de Venda é obrigatório")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Preço de Venda deve ser maior que zero")
+    @Column(name = "PRO_PRECO_VENDA", precision = 10, scale = 2, nullable = false)
     private Double proPrecoVenda;
 
-    @Column(name = "PRO_MARCA")
+    @Size(max = 50, message = "Marca deve ter no máximo 50 caracteres")
+    @Column(name = "PRO_MARCA", length = 50)
     private String proMarca;
 
-    @Column(name = "PRO_MODELO")
+    @Size(max = 50, message = "Modelo deve ter no máximo 50 caracteres")
+    @Column(name = "PRO_MODELO", length = 50)
     private String proModelo;
 
-    @Column(name = "PRO_ESTOQUE")
+    @Min(value = 0, message = "Estoque não pode ser negativo")
+    @Column(name = "PRO_ESTOQUE", nullable = false)
     private int proEstoque;
 
-    @Column(name = "PRO_COR")
+    @Size(max = 30, message = "Cor deve ter no máximo 30 caracteres")
+    @Column(name = "PRO_COR", length = 30)
     private String proCor;
 
-    @Column(name = "PRO_MATERIAL")
+    @Size(max = 50, message = "Material deve ter no máximo 50 caracteres")
+    @Column(name = "PRO_MATERIAL", length = 50)
     private String proMaterial;
 
-    @Column(name = "PRO_FABRICANTE")
+    @Size(max = 100, message = "Fabricante deve ter no máximo 100 caracteres")
+    @Column(name = "PRO_FABRICANTE", length = 100)
     private String proFabricante;
-    @Column(name = "PRO_DESCRICAO")
+
+    @Size(max = 255, message = "Descrição deve ter no máximo 255 caracteres")
+    @Column(name = "PRO_DESCRICAO", length = 255)
     private String proDescricao;
-    @Column(name = "PRO_CATEGORIA")
+
+    @Size(max = 50, message = "Categoria deve ter no máximo 50 caracteres")
+    @Column(name = "PRO_CATEGORIA", length = 50)
     private String proCategoria;
-    @Column(name = "PRO_CODIGO_BARRAS")
+
+    @Size(max = 30, message = "Código de Barras deve ter no máximo 30 caracteres")
+    @Column(name = "PRO_CODIGO_BARRAS", length = 30)
     private String proCodigoBarras;
+
     @Column(name = "PRO_DATA_CADASTRO")
     private LocalDateTime proDataCadastro;
+
     @Column(name = "PRO_DATA_ATUALIZACAO")
     private LocalDateTime proDataAtualizacao;
 
-    @Column(name = "PRO_ATIVO")
+    @NotBlank(message = "Status Ativo é obrigatório")
+    @Size(max = 10, message = "Status Ativo deve ter no máximo 10 caracteres")
+    @Column(name = "PRO_ATIVO", nullable = false, length = 10)
     private String proAtivo;
+
 
     public Produto() {
     }
